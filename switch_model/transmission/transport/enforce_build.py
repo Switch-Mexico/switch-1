@@ -35,7 +35,9 @@ def define_components(mod):
     def trans_years(model) :
         return (i for i in model.trans_build_year.items())
 
-    mod.trans_build_years = Set(dimen=2, initialize=trans_years)
+    mod.trans_build_years = Set(
+            dimen=2,
+            initialize=trans_years)
 
     # Read legacy and build years
     mod.BLD_YRS_FOR_EXISTING_TX = Set(
@@ -59,12 +61,31 @@ def define_components(mod):
         dimen=2,
         initialize=lambda m: m.BLD_YRS_FOR_EXISTING_TX | m.NEW_TRANS_BLD_YRS)
 
+    def tx_build_can_operate_in_period(m, tx, build_year, period):
+        if build_year in m.PERIODS:
+            online = m.period_start[build_year]
+        else:
+            online = build_year
+         retirement = online + 25
+        return (
+            online <= m.period_start[period] < retirement
+        )
+
     mod.TX_BUILDS_IN_PERIOD = Set(
         mod.PERIODS,
         within=mod.BLD_YRS_FOR_TX,
+        ordered=True,
         initialize=lambda m, p: set(
             (tx, bld_yr) for (tx, bld_yr) in m.BLD_YRS_FOR_TX
-            if bld_yr == 'Legacy' or bld_yr <= p))
+            if bld_yr == "Legacy" or
+            tx_build_can_operate_in_period(m, tx, bld_yr, p)))
+
+    #  mod.TX_BUILDS_IN_PERIOD = Set(
+    #      mod.PERIODS,
+    #      within=mod.BLD_YRS_FOR_TX,
+    #      initialize=lambda m, p: set(
+    #          (tx, bld_yr) for (tx, bld_yr) in m.BLD_YRS_FOR_TX
+    #          if bld_yr == 'Legacy' or bld_yr <= p))
 
     def bounds_BuildTx(model, tx, bld_yr):
         if((tx, bld_yr) in model.BLD_YRS_FOR_EXISTING_TX):
