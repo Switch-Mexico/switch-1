@@ -62,23 +62,33 @@ def define_components(mod):
         initialize=lambda m: m.BLD_YRS_FOR_EXISTING_TX | m.NEW_TRANS_BLD_YRS)
 
     def tx_build_can_operate_in_period(m, tx, build_year, period):
+        if build_year == "Legacy": return (0)
         if build_year in m.PERIODS:
             online = m.period_start[build_year]
         else:
             online = build_year
-         retirement = online + 25
+        retirement = online + 25
         return (
             online <= m.period_start[period] < retirement
         )
+
+    def tx_builds_in_period(mod, period):
+        vale = []
+        for (tx, bld_yr) in mod.BLD_YRS_FOR_TX:
+            if bld_yr == 'Legacy': continue
+            if mod.period_start[period] <= bld_yr <= mod.period_end[period]:
+                vale.append((tx, bld_yr))
+            else:
+                continue
+
+        return vale
+
 
     mod.TX_BUILDS_IN_PERIOD = Set(
         mod.PERIODS,
         within=mod.BLD_YRS_FOR_TX,
         ordered=True,
-        initialize=lambda m, p: set(
-            (tx, bld_yr) for (tx, bld_yr) in m.BLD_YRS_FOR_TX
-            if bld_yr == "Legacy" or
-            tx_build_can_operate_in_period(m, tx, bld_yr, p)))
+        initialize=tx_builds_in_period)
 
     #  mod.TX_BUILDS_IN_PERIOD = Set(
     #      mod.PERIODS,

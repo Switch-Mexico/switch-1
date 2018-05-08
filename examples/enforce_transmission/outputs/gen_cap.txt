@@ -3,7 +3,7 @@ N-Commercial_PV	2030	Commercial_PV	North	Solar	0	0	0
 S-Commercial_PV	2030	Commercial_PV	South	Solar	0	0	0
 S-NG_CC_CCS	2020	NG_CC_CCS	South	NaturalGas	0	0	0
 C-Coal_ST	2020	Coal_ST	Central	Coal	2	411840	42780
-N-Coal_IGCC	2030	Coal_IGCC	North	Coal	0	-1.55809e-10	0
+N-Coal_IGCC	2030	Coal_IGCC	North	Coal	0	0	0
 C-Biomass_IGCC	2030	Biomass_IGCC	Central	BioSolid	0	0	0
 S-Geothermal	2020	Geothermal	South	Geothermal	3	1.36798e+06	0
 N-NG_CC	2020	NG_CC	North	NaturalGas	2	226820	11736.6
@@ -47,7 +47,7 @@ S-Central_PV-1	2020	Central_PV	South	Solar	0	0	0
 N-Central_PV-1	2020	Central_PV	North	Solar	0	0	0
 S-Residential_PV	2030	Residential_PV	South	Solar	0	0	0
 N-Central_PV-2	2030	Central_PV	North	Solar	0	0	0
-N-Coal_IGCC	2020	Coal_IGCC	North	Coal	0	-1.55809e-10	0
+N-Coal_IGCC	2020	Coal_IGCC	North	Coal	0	0	0
 N-Geothermal	2030	Geothermal	North	Geothermal	1	458318	0
 C-NG_CC	2020	NG_CC	Central	NaturalGas	2.47824	270730	13981.8
 N-Wind-2	2030	Wind	North	Wind	1	154860	55800
@@ -70,8 +70,8 @@ N-Commercial_PV	2020	Commercial_PV	North	Solar	0	0	0
 N-Wind-1	2020	Wind	North	Wind	0	0	0
 N-Residential_PV	2020	Residential_PV	North	Solar	0	0	0
 N-NG_CC_CCS	2030	NG_CC_CCS	North	NaturalGas	0	0	0
-C-Coal_IGCC	2020	Coal_IGCC	Central	Coal	0	-1.25121e-10	0
-N-Coal_IGCC_CCS	2030	Coal_IGCC_CCS	North	Coal	0	3.32832e-10	0
+C-Coal_IGCC	2020	Coal_IGCC	Central	Coal	0	1.25121e-10	0
+N-Coal_IGCC_CCS	2030	Coal_IGCC_CCS	North	Coal	0	-6.65664e-10	0
 N-Nuclear	2030	Nuclear	North	Uranium	0	0	0
 N-NG_GT	2020	NG_GT	North	NaturalGas	2	125164	9783.6
 N-Central_PV-2	2020	Central_PV	North	Solar	0	0	0
