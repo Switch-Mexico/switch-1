@@ -251,17 +251,17 @@ def post_solve(instance, outdir):
     pdb.set_trace()
     normalized_dat = [
         {
-        	"TRANSMISSION_LINE": tx,
-        	"PERIOD": p,
-        	"trans_lz1": mod.trans_lz1[tx],
-        	"trans_lz2": mod.trans_lz2[tx],
-        	"trans_dbid": mod.trans_dbid[tx],
-        	"trans_length_km": mod.trans_length_km[tx],
-        	"trans_efficiency": mod.trans_efficiency[tx],
-        	"trans_derating_factor": mod.trans_derating_factor[tx],
-        	"TxCapacityNameplate": value(mod.TxCapacityNameplate[tx,p]),
-        	"TxCapacityNameplateAvailable": value(mod.TxCapacityNameplateAvailable[tx,p]),
-        	"TotalAnnualCost": value(mod.TxCapacityNameplate[tx,p] * mod.trans_cost_annual[tx])
+            "TRANSMISSION_LINE": tx,
+            "PERIOD": p,
+            "trans_lz1": mod.trans_lz1[tx],
+            "trans_lz2": mod.trans_lz2[tx],
+            "trans_dbid": mod.trans_dbid[tx],
+            "trans_length_km": mod.trans_length_km[tx],
+            "trans_efficiency": mod.trans_efficiency[tx],
+            "trans_derating_factor": mod.trans_derating_factor[tx],
+            "TxCapacityNameplate": value(mod.TxCapacityNameplate[tx,p]),
+            "TxCapacityNameplateAvailable": value(mod.TxCapacityNameplateAvailable[tx,p]),
+            "TotalAnnualCost": value(mod.TxCapacityNameplate[tx,p] * mod.trans_cost_annual[tx])
         } for tx, p in mod.TRANSMISSION_LINES * mod.PERIODS
     ]
     tx_build_df = pd.DataFrame(normalized_dat)

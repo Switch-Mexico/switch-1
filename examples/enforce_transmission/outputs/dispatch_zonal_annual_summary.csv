@@ -15,7 +15,7 @@ Central_PV,North,Solar,2020,0.0,0.0,0.0
 Central_PV,North,Solar,2030,0.0,0.0,0.0
 Central_PV,South,Solar,2020,0.0,0.0,0.0
 Central_PV,South,Solar,2030,0.0,0.0,0.0
-Coal_IGCC,Central,Coal,2020,2.91965385202e-15,1.4206334927e-11,2.21713842076e-12
+Coal_IGCC,Central,Coal,2020,4.37948077803e-15,2.13095023905e-11,3.32570763114e-12
 Coal_IGCC,Central,Coal,2030,0.0,0.0,0.0
 Coal_IGCC,North,Coal,2020,0.0,0.0,0.0
 Coal_IGCC,North,Coal,2030,0.0,0.0,0.0
