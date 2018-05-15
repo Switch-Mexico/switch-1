@@ -14,6 +14,7 @@ TODO:
 
 import os
 import pandas as pd
+import pdb
 from pyomo.environ import *
 
 def define_components(mod):
@@ -21,6 +22,11 @@ def define_components(mod):
 
     # Read the periods to enforce
     mod.dg_PERIODS = Set(validate=lambda m, p: p in m.PERIODS)
+
+    mod.dg_techs = Set(
+            initialize=lambda m: set(gen for gen in m.GENERATION_PROJECTS
+                if m.gen_tech[gen] == 'Commercial_PV' # Change for specific tech
+            ))
 
     # Read the targets to enforce
     mod.dg_min_target_capacity_mw = Param(
@@ -30,7 +36,7 @@ def define_components(mod):
     # Make a set of the plants to enfocer building 
     mod.dg_gens = Set(
         initialize=mod.GENERATION_PROJECTS,
-        filter=lambda m, g: m.gen_is_distributed[g]
+        filter=lambda m, g: g in m.dg_techs
         )
 
     # Calculate the capacity for all technologies per period
@@ -66,11 +72,11 @@ def load_inputs(mod, switch_data, inputs_dir, ext='.csv'):
         param=(mod.dg_min_target_capacity_mw,)
         )
 
-#  def post_solve(instance, outdir):
-#      """
-#      Export energy statistics relevant to RPS studies.
-#      """
-#
+def post_solve(instance, outdir):
+    """
+    Export energy statistics relevant to RPS studies.
+    """
+    mod = instance
 #      import switch_model.reporting as reporting
 #      def get_row(m, p):
 #          row = (p,)

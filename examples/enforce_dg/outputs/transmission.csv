@@ -1,5 +1,5 @@
 TRANSMISSION_LINE,PERIOD,TotalAnnualCost,TxCapacityNameplate,TxCapacityNameplateAvailable,trans_dbid,trans_derating_factor,trans_efficiency,trans_length_km,trans_lz1,trans_lz2
 C-S,2020,149271.510892,6.0,6.0,C-S,1,0.94,200,Central,South
-C-S,2030,208439.886497,8.37828539088,8.37828539088,C-S,1,0.94,200,Central,South
+C-S,2030,205082.724639,8.24334355889,8.24334355889,C-S,1,0.94,200,Central,South
 N-C,2020,37317.877723,3.0,3.0,N-C,1,0.96,100,North,Central
-N-C,2030,44804.7586204,3.60187352719,3.60187352719,N-C,1,0.96,100,North,Central
+N-C,2030,37776.2299291,3.03684712804,3.03684712804,N-C,1,0.96,100,North,Central
