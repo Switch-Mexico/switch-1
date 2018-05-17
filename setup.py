@@ -26,7 +26,7 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 setup(
-    name='switch_model',
+    name='switch-mexico',
     version=__version__,
     maintainer='Switch Authors',
     maintainer_email='authors@switch-model.org',
