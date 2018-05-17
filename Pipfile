@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+PyUtilib = "==5.4.1"
+Pyomo = "==5.1.1"
+nose = "==1.3.7"
+ply = "==3.8"
+testfixtures = "==4.8.0"
+sympy = "==1.0"
+numpy = "==1.11.2"
+twine = "*"
+
+[dev-packages]
