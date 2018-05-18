@@ -25,7 +25,7 @@ def define_components(mod):
 
     mod.dg_techs = Set(
             initialize=lambda m: set(gen for gen in m.GENERATION_PROJECTS
-                if m.gen_tech[gen] == 'Commercial_PV' # Change for specific tech
+                if m.gen_tech[gen] == 'solarpv_distributed' # Change for specific tech
             ))
 
     # Read the targets to enforce
