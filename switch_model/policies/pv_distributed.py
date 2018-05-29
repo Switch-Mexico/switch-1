@@ -40,11 +40,12 @@ def define_components(mod):
         )
 
     # Calculate the capacity for all technologies per period
-    mod.capacity_period = Expression(
-            mod.dg_PERIODS,
-            rule= lambda m, p: sum(m.GenCapacity[g, p]
-                                    for g in m.GENERATION_PROJECTS)
-            )
+    # Deprecated
+    #  mod.capacity_period = Expression(
+    #          mod.dg_PERIODS,
+    #          rule= lambda m, p: sum(m.GenCapacity[g, p]
+    #                                  for g in m.GENERATION_PROJECTS)
+    #          )
 
     # Calculate the capacity for dg technologies per period
     mod.dg_capacity = Expression(
