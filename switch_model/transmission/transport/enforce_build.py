@@ -73,15 +73,16 @@ def define_components(mod):
         )
 
     def tx_builds_in_period(mod, period):
-        vale = []
+        value = []
         for (tx, bld_yr) in mod.BLD_YRS_FOR_TX:
-            if bld_yr == 'Legacy': continue
+            if bld_yr == 'Legacy':
+                value.append((tx, bld_yr))
             if mod.period_start[period] <= bld_yr <= mod.period_end[period]:
-                vale.append((tx, bld_yr))
+                value.append((tx, bld_yr))
             else:
                 continue
 
-        return vale
+        return value
 
 
     mod.TX_BUILDS_IN_PERIOD = Set(
