@@ -94,7 +94,7 @@ def define_components(mod):
                 continue
         return max(value)
 
-    mod.rps_target_test = Var(
+    mod.rps_target_test = Param(
             mod.PERIODS,
             initialize=_rps_in_period
             )

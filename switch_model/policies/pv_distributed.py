@@ -21,7 +21,7 @@ def define_components(mod):
     """ Define sets, parameters and constrains"""
 
     # Read the periods to enforce
-    mod.dg_PERIODS = Set(validate=lambda m, p: p in m.PERIODS)
+    mod.dg_PERIODS = Set()
 
     mod.dg_techs = Set(
             initialize=lambda m: set(gen for gen in m.GENERATION_PROJECTS
@@ -31,6 +31,7 @@ def define_components(mod):
     # Read the targets to enforce
     mod.dg_min_target_capacity_mw = Param(
             mod.dg_PERIODS,
+            within=NonNegativeReals,
             )
 
     # Make a set of the plants to enfocer building 
@@ -39,25 +40,43 @@ def define_components(mod):
         filter=lambda m, g: g in m.dg_techs
         )
 
+    mod.dg_years = Set(initialize=mod.dg_PERIODS)
+
+    mod.dg_years_PERIOD = Set(
+        initialize=mod.PERIODS & mod.dg_years
+        )
+
+    def dg_in_period(mod, period):
+        value = []
+        for (bld_yr, target) in mod.dg_min_target_capacity_mw.items():
+            if mod.period_start[period] <= bld_yr <= mod.period_end[period]:
+                value.append(target)
+            else:
+                continue
+        return max(value)
+
+    mod.dg_test = Param(
+            mod.PERIODS,
+            initialize=dg_in_period
+            )
     # Calculate the capacity for all technologies per period
     # Deprecated
     #  mod.capacity_period = Expression(
     #          mod.dg_PERIODS,
     #          rule= lambda m, p: sum(m.GenCapacity[g, p]
-    #                                  for g in m.GENERATION_PROJECTS)
-    #          )
+    #                                  for g in m.GENERATION_PROJECTS) #          )
 
     # Calculate the capacity for dg technologies per period
     mod.dg_capacity = Expression(
-            mod.dg_PERIODS,
+            mod.dg_years_PERIOD,
             rule= lambda m, p: sum(m.GenCapacity[g, p]
                                     for g in m.dg_gens)
             )
 
     # Enforce the constrain
     mod.Enfoce_dg = Constraint(
-            mod.dg_PERIODS,
-            rule=lambda m, p: m.dg_capacity[p] >= m.dg_min_target_capacity_mw[p]
+            mod.dg_years_PERIOD,
+            rule=lambda m, p: m.dg_capacity[p] >= m.dg_test[p]
             )
 
 def load_inputs(mod, switch_data, inputs_dir, ext='.csv'):
@@ -78,6 +97,7 @@ def post_solve(instance, outdir):
     Export energy statistics relevant to RPS studies.
     """
     mod = instance
+    pdb.set_trace()
 #      import switch_model.reporting as reporting
 #      def get_row(m, p):
 #          row = (p,)
