@@ -9,3 +9,20 @@ tags
 
 # Ignore pyenv version
 .python-version
+
+/.venv
+*.log
+*.pyc
+__pycache__/
+.cache
+*.egg-info/
+*.swp
+.sublime-text-git-autocommit
+docs/_build
+dist
+build
+.DS_Store
+test_project
+/.vscode/
+.idea
+
