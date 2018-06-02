@@ -11,6 +11,6 @@ switch_model.reporting
 switch_model.transmission.local_td
 switch_model.generators.core.no_commit
 switch_model.energy_sources.fuel_costs.markets
-switch_model.transmission.transport.build
-#switch_model.transmission.transport.enforce_build
+#switch_model.transmission.transport.build
+switch_model.transmission.transport.enforce_build
 switch_model.transmission.transport.dispatch

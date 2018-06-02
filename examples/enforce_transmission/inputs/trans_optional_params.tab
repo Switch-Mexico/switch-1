@@ -1,6 +1,4 @@
 TRANSMISSION_LINE	trans_dbid	trans_derating_factor	trans_terrain_multiplier	trans_new_build_allowed
-N-C	.	1	1	1
-C-S	.	1	1	1
-N-S	.	1	1	1
+N-S	.	1	1.5	1
 
      

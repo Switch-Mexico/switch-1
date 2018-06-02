@@ -6,6 +6,6 @@ PERIOD,Component,AnnualCost_NPV,AnnualCost_Real,Component_type
 2030,TotalGenFixedCosts,23485513.3955,5462063.66678,annual
 2030,LocalTDFixedCosts,3339634.92444,776704.271859,annual
 2030,FuelCostsPerPeriod,12324098.3946,2866235.4079,annual
-2030,TxFixedCosts,1091555.69724,253864.866131,annual
+2030,TxFixedCosts,1211918.32403,281857.796051,annual
 2020,GenVariableOMCostsInTP,12590539.02,1797661.97581,timepoint
 2030,GenVariableOMCostsInTP,5873043.05927,1365903.08107,timepoint

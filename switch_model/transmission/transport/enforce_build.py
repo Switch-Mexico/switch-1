@@ -249,7 +249,6 @@ def load_inputs(mod, switch_data, inputs_dir):
 
 def post_solve(instance, outdir):
     mod = instance
-    pdb.set_trace()
     normalized_dat = [
         {
             "TRANSMISSION_LINE": tx,

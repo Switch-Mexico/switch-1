@@ -70,8 +70,8 @@ N-Commercial_PV	2020	Commercial_PV	North	Solar	0	0	0
 N-Wind-1	2020	Wind	North	Wind	0	0	0
 N-Residential_PV	2020	Residential_PV	North	Solar	0	0	0
 N-NG_CC_CCS	2030	NG_CC_CCS	North	NaturalGas	0	0	0
-C-Coal_IGCC	2020	Coal_IGCC	Central	Coal	0	1.87682e-10	0
-N-Coal_IGCC_CCS	2030	Coal_IGCC_CCS	North	Coal	0	-6.65664e-10	0
+C-Coal_IGCC	2020	Coal_IGCC	Central	Coal	0	5.00485e-10	0
+N-Coal_IGCC_CCS	2030	Coal_IGCC_CCS	North	Coal	0	0	0
 N-Nuclear	2030	Nuclear	North	Uranium	0	0	0
 N-NG_GT	2020	NG_GT	North	NaturalGas	2	125164	9783.6
 N-Central_PV-2	2020	Central_PV	North	Solar	0	0	0
