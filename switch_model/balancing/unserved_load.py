@@ -60,3 +60,6 @@ def load_inputs(mod, switch_data, inputs_dir):
     lost_load_path = os.path.join(inputs_dir, 'lost_load_cost.dat')
     if os.path.isfile(lost_load_path):
         switch_data.load(filename=lost_load_path)
+
+def post_solve(instance, outdir):
+    m = instance

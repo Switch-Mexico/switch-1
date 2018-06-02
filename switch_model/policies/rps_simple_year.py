@@ -164,7 +164,6 @@ def post_solve(instance, outdir):
     """
     Export energy statistics relevant to RPS studies.
     """
-    m = instance
 
     import switch_model.reporting as reporting
     def get_row(m, p):

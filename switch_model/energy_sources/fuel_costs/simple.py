@@ -96,3 +96,6 @@ def load_inputs(mod, switch_data, inputs_dir):
         select=('load_zone', 'fuel', 'period', 'fuel_cost'),
         index=mod.ZONE_FUEL_PERIODS,
         param=[mod.fuel_cost])
+
+def post_solve(instance, outdir):
+    m = instance
