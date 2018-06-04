@@ -99,8 +99,8 @@ def define_components(mod):
                 value.append((tx, bld_yr))
             if mod.period_start[period] <= bld_yr <= mod.period_end[period]:
                 value.append((tx, bld_yr))
-            else:
-                continue
+            elif bld_yr <= period:
+                value.append((tx, bld_yr))
         return value
 
 
@@ -268,7 +268,7 @@ def load_inputs(mod, switch_data, inputs_dir):
 
 def post_solve(instance, outdir):
     mod = instance
-    pdb.set_trace()
+    #  pdb.set_trace()
     normalized_dat = [
         {
             "TRANSMISSION_LINE": tx,
