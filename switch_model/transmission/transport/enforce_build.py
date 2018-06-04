@@ -54,7 +54,7 @@ def define_components(mod):
             initialize=trans_years)
 
     # Set of future transmission lines
-    mod.new_build_years = Set(
+    mod.new_tx_build_years = Set(
             dimen=2,
             initialize=trans_new_years)
 
@@ -74,7 +74,7 @@ def define_components(mod):
     mod.NEW_TRANS_BLD_YRS = Set(
         dimen=2,
         initialize=mod.legacy_tx * mod.PERIODS |
-        mod.new_build_years,
+        mod.new_tx_build_years,
         filter=lambda m, tx, p: m.trans_new_build_allowed[tx])
 
     mod.BLD_YRS_FOR_TX = Set(
