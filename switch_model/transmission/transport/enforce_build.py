@@ -15,7 +15,7 @@ dependencies = 'switch_model.timescales', 'switch_model.balancing.load_zones',\
     'switch_model.financials'
 
 def define_components(mod):
-    """ Enforce build"""
+    """ Enforce transmission line build"""
 
     mod.TRANSMISSION_LINES = Set()
     mod.trans_lz1 = Param(mod.TRANSMISSION_LINES, within=mod.LOAD_ZONES)
@@ -32,12 +32,31 @@ def define_components(mod):
         mod.TRANSMISSION_LINES,
         within=NonNegativeReals)
 
-    def trans_years(model) :
-        return (i for i in model.trans_build_year.items())
+    def trans_years(model):
+        return ((tx, bld_year) for tx, bld_year in model.trans_build_year.items()
+                if bld_year=='Legacy')
 
-    mod.trans_build_years = Set(
+    def trans_new_years(model) :
+        return ((tx, bld_year) for tx, bld_year in model.trans_build_year.items()
+                if bld_year!='Legacy')
+
+    def trans_legacy(model) :
+        return (tx for tx, _ in model.trans_build_year.items() if _ == 'Legacy')
+
+    # Set of existing transmission lines
+    mod.legacy_tx = Set(
+            dimen=1,
+            initialize=trans_legacy)
+
+    # Set of existing transmission lines
+    mod.legacy_build_years = Set(
             dimen=2,
             initialize=trans_years)
+
+    # Set of future transmission lines
+    mod.new_build_years = Set(
+            dimen=2,
+            initialize=trans_new_years)
 
     # Read legacy and build years
     mod.BLD_YRS_FOR_EXISTING_TX = Set(
@@ -54,7 +73,8 @@ def define_components(mod):
 
     mod.NEW_TRANS_BLD_YRS = Set(
         dimen=2,
-        initialize=mod.TRANSMISSION_LINES * mod.PERIODS,
+        initialize=mod.legacy_tx * mod.PERIODS |
+        mod.new_build_years,
         filter=lambda m, tx, p: m.trans_new_build_allowed[tx])
 
     mod.BLD_YRS_FOR_TX = Set(
@@ -81,7 +101,6 @@ def define_components(mod):
                 value.append((tx, bld_yr))
             else:
                 continue
-
         return value
 
 
@@ -99,7 +118,7 @@ def define_components(mod):
     #          if bld_yr == 'Legacy' or bld_yr <= p))
 
     def bounds_BuildTx(model, tx, bld_yr):
-        if((tx, bld_yr) in model.BLD_YRS_FOR_EXISTING_TX):
+        if((tx, bld_yr) in model.trans_build_year.items()):
             return (model.existing_trans_cap[tx],
                     model.existing_trans_cap[tx])
         else:
@@ -132,7 +151,7 @@ def define_components(mod):
         mod.TRANSMISSION_LINES,
         within=Reals,
         default=1,
-        validate=lambda m, val, tx: val >= 0.5 and val <= 3)
+        validate=lambda m, val, tx: val >= 0.5 and val <= 100)
 
     mod.trans_capital_cost_per_mw_km = Param(
         within=PositiveReals,
@@ -249,6 +268,7 @@ def load_inputs(mod, switch_data, inputs_dir):
 
 def post_solve(instance, outdir):
     mod = instance
+    pdb.set_trace()
     normalized_dat = [
         {
             "TRANSMISSION_LINE": tx,
