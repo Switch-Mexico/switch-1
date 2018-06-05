@@ -118,11 +118,7 @@ def define_components(mod):
     #          if bld_yr == 'Legacy' or bld_yr <= p))
 
     def bounds_BuildTx(model, tx, bld_yr):
-<<<<<<< HEAD
-        if((tx, bld_yr) in model.BLD_YRS_FOR_EXISTING_TX):
-=======
         if((tx, bld_yr) in model.trans_build_year.items()):
->>>>>>> feature/transmission
             return (model.existing_trans_cap[tx],
                     model.existing_trans_cap[tx])
         else:
@@ -155,11 +151,7 @@ def define_components(mod):
         mod.TRANSMISSION_LINES,
         within=Reals,
         default=1,
-<<<<<<< HEAD
-        validate=lambda m, val, tx: val >= 0.5 and val <= 3)
-=======
         validate=lambda m, val, tx: val >= 0.5 and val <= 100)
->>>>>>> feature/transmission
 
     mod.trans_capital_cost_per_mw_km = Param(
         within=PositiveReals,
