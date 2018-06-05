@@ -99,14 +99,8 @@ def define_components(mod):
                 value.append((tx, bld_yr))
             if mod.period_start[period] <= bld_yr <= mod.period_end[period]:
                 value.append((tx, bld_yr))
-<<<<<<< HEAD
-            else:
-                continue
-
-=======
             elif bld_yr <= period:
                 value.append((tx, bld_yr))
->>>>>>> feature/transmission
         return value
 
 
