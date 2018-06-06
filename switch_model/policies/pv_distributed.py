@@ -53,7 +53,14 @@ def define_components(mod):
                 value.append(target)
             else:
                 continue
-        return max(value)
+        if len(value) > 1:
+            return max(value)
+        elif len(value) == 1:
+            # Return first element of list
+            # Numeric entry is required
+            return value[0]
+        else:
+            return 0
 
     mod.dg_test = Param(
             mod.PERIODS,

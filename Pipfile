@@ -11,7 +11,8 @@ ply = "==3.8"
 testfixtures = "==4.8.0"
 sympy = "==1.0"
 numpy = "==1.11.2"
-twine = "*"
 
 [dev-packages]
 bumpversion = "*"
+"e1839a8" = {path = ".", editable = true}
+twine = "*"
